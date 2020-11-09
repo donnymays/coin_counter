@@ -1,19 +1,22 @@
-export default class Triangle {
-  constructor(side1, side2, side3) {
-    this.side1 = side1;
-    this.side2 = side2;
-    this.side3 = side3;
+const cCounter = (input) => {
+  if (input == 0) {
+    return "!";
+  } else if (input < 5) {
+    return `${input} pennies `;
+  } else if (input >= 25) {
+    return (
+      `${Math.trunc(input / 10)} quarters ` +
+      cCounter(input - Math.trunc(input / 25) * 25)
+    );
+  } else if (input >= 10) {
+    return (
+      `${Math.trunc(input / 10)} dimes ` +
+      cCounter(input - Math.trunc(input / 10) * 10)
+    );
+  } else if (input >= 5) {
+    return (
+      `${Math.trunc(input / 5)} nickels ` +
+      cCounter(input - Math.trunc(input / 5) * 5)
+    );
   }
-
-  checkType() {
-    if ((this.side1 > (this.side2 + this.side3)) || (this.side2 > (this.side1 + this.side3)) || (this.side3 > (this.side1 + this.side2))) {
-      return "not a triangle";
-    } else if ((this.side1 !== this.side2) && ((this.side1 !== this.side3)) && ((this.side2 !== this.side3))) {
-      return "scalene triangle";
-    }  else if ((this.side1 === this.side2) && (this.side1 === this.side3)) {
-      return "equilateral triangle";
-    } else {
-      return "isosceles triangle";
-    }
-  }    
-}
+};
